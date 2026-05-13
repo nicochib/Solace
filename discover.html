@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solace — Discover</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* =====================
+       PAGE SPECIFIC VARIABLES
+    ===================== */
+    :root {
+      --black: #0a0806;
+      --white: #ffffff;
+      --amber: #c8440a;
+      --amber-light: rgba(200, 68, 10, 0.85);
+      --burgandy-red-black:rgba(51, 6, 6, 1000);
+      --card-overlay: rgba(10, 8, 6, 0.75);
+    }
+
+    body {
+      background: var(--black);
+      font-family: 'PPMori', Arial, sans-serif;
+      overflow-x: hidden;
+      cursor: default;
+      color: var(--white);
+    }
+
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      padding: 28px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 48px;
+      transition: color 0.3s ease;
+      color: #000000;
+    }
+
+    nav a {
+      position: relative;
+      color: inherit;
+      text-decoration: none;
+      font-family: 'PPMori', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+
+    nav a:hover { opacity: 1; }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    /* =====================
+       SOLACE CORNER LOGO
+    ===================== */
+    .solace-logo {
+      position: fixed;
+      top: 20px;
+      left: 40px;
+      z-index: 9999;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -0.06em;
+      text-decoration: none;
+      background-image: url('tumblr_6c0d0eeaf40941f4b5516ba09a75a79c_8cec24cb_2048.jpg');
+      background-size: cover;
+      background-position: center 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* =====================
+       PAGE WRAPPER — white margins
+    ===================== */
+    .page-wrapper {
+      padding-top: 80px;
+      padding-left: 45px;
+      padding-right: 45px;
+      background: var(--white);
+      width: 100%;
+    }
+
+    /* =====================
+       HERO — two column grid
+    ===================== */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--black);
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      align-items: stretch;
+    }
+
+    /* =====================
+       LEFT COLUMN — artist cards
+    ===================== */
+    .cards-column {
+      position: relative;
+      min-height: 100vh;
+      z-index: 10;
+    }
+
+    /* =====================
+       ARTIST CARDS
+    ===================== */
+    .artist-card {
+      position: absolute;
+      width: 280px;
+      cursor: pointer;
+    }
+
+    .card-beyonce {
+      top: 80px;
+      left: 30px;
+    }
+
+    .card-kelela {
+      top: 320px;
+      left: 140px;
+    }
+
+    .card-inner {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    /* Artist image */
+    .artist-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 280px;
+      height: 280px;
+      border: 20px solid var(--white);
+      z-index: 2;
+      overflow: visible;
+    }
+
+    .artist-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Vinyl peeking behind */
+    .vinyl {
+      position: absolute;
+      right: -80px;
+      top: 20px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .vinyl img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Hover overlay */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--card-overlay);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px;
+      gap: 10px;
+    }
+
+    .artist-card:hover .card-overlay {
+      opacity: 1;
+    }
+
+    /* Play button */
+    .play-btn {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 6;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+
+    .play-btn svg {
+      width: 12px;
+      height: 12px;
+      fill: var(--amber);
+      margin-left: 2px;
+    }
+
+    .artist-card:hover .play-btn {
+      opacity: 1;
+    }
+
+    /* Card text info */
+    .card-info {
+      padding: 10px 0 0 12px;
+      flex: 1;
+    }
+
+    .artist-name {
+      font-family: 'PPMori', sans-serif;
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .mood-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      font-family: 'PPMori', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      color: var(--amber-light);
+      border: 1px solid var(--amber-light);
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+
+    .artist-description {
+      font-family: 'PPMori', sans-serif;
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* Artist on the rise stamp */
+    .rise-stamp {
+      display: inline-block;
+      font-family: 'PPMori', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--amber);
+      padding: 4px 10px;
+      margin-bottom: 6px;
+    }
+
+    /* =====================
+       RIGHT COLUMN — parallax image
+    ===================== */
+    .parallax-column {
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      inset: -5%;
+      background-image: url('TylrrrPortrait.png');
+      background-size: cover;
+      background-position: center top;
+      will-change: transform;
+      z-index: 1;
+      filter: brightness(0.85);
+    }
+
+    /* DISCOVER text */
+    .discover-text {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      right: 40px;
+      z-index: 10;
+    }
+
+    .discover-title {
+      font-family: 'PPMori', sans-serif;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+    }
+
+    /* Music the algorithm missed */
+    .discover-tagline {
+      position: absolute;
+      bottom: 60px;
+      left: 40px;
+      right: 40px;
+      font-family: 'PPMori', sans-serif;
+      font-size: clamp(32px, 5vw, 90px);
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: -0.04em;
+      line-height: 0.8;
+      z-index: 10;
+    }
+
+    /* =====================
+       MODAL
+    ===================== */
+    .modal {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      top: auto;
+      left: auto;
+      inset: 0;
+      background: rgba(10, 8, 6, 0.95);
+      z-index: 99999;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 0;
+    }
+
+    .modal.visible {
+      display: flex;
+    }
+
+    .modal-inner {
+      background:rgba(0, 0, 0 0) ;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      position: relative;
+      border-radius: 4px;
+      max-width: 600px;
+      width: 300%;
+      gap: 16px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -20px;
+      right: 0;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close:hover { color: var(--white); }
+
+    .modal-vinyl {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-vinyl img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .modal-vinyl.spinning {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .modal-artist-name {
+      font-family: 'PPMori', sans-serif;
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--amber);
+      letter-spacing: -0.04em;
+    }
+
+    .modal-description {
+      font-family: 'PPMori', sans-serif;
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .modal-tag {
+      font-family: 'PPMori', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      color: var(--amber-light);
+      border: 1px solid var(--amber-light);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .modal-spotify {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'PPMori', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 100px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-spotify:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    /* =====================
+       ANIMATIONS
+    ===================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cards-column {
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .discover-text {
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="science.html">The Science</a>
+  </nav>
+
+  <!-- SOLACE corner logo -->
+  <a href="index.html" class="solace-logo">SOLACE</a>
+
+  <!-- White margin wrapper -->
+  <div class="page-wrapper">
+
+    <!-- HERO — two column grid -->
+    <section class="hero">
+
+      <!-- LEFT COLUMN — artist cards -->
+      <div class="cards-column">
+
+        <!-- Beyoncé Card -->
+        <div class="artist-card card-beyonce" onclick="openModal('beyonce')">
+          <div class="card-inner">
+            <div class="artist-img-wrap">
+              <img src="IMG_6996.PNG" alt="Beyoncé"/>
+              <div class="card-overlay">
+                <div class="mood-tags">
+                  <span class="tag">euphoric</span>
+                  <span class="tag">emotional</span>
+                  <span class="tag">dance</span>
+                  <span class="tag">raw</span>
+                  <span class="tag">defiant</span>
+                </div>
+                <p class="artist-description">Not one sound. Not one feeling. Every era is a different world. Pick which version of her you need right now.</p>
+              </div>
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="vinyl vinyl-beyonce" id="vinyl-beyonce">
+              <img src="Image 2.png" alt="vinyl"/>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="artist-name">Beyoncé</div>
+          </div>
+        </div>
+
+        <!-- Kelela Card -->
+        <div class="artist-card card-kelela" onclick="openModal('kelela')">
+          <div class="card-inner">
+            <div class="artist-img-wrap">
+              <img src="tumblr_349d51f3bb860aa96221f4975680fed0_55b964d1_1280.jpg" alt="Kelela"/>
+              <div class="rise-stamp">Artist on the rise</div>
+              <div class="card-overlay">
+                <div class="mood-tags">
+                  <span class="tag">aquatic</span>
+                  <span class="tag">liminal</span>
+                  <span class="tag">spatial</span>
+                  <span class="tag">corporeal</span>
+                  <span class="tag">emotional sci-fi</span>
+                </div>
+                <p class="artist-description">Immersive descent. A sound so spatial it feels extraterrestrial while carrying so much human emotion.</p>
+              </div>
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="vinyl vinyl-kelela" id="vinyl-kelela">
+              <img src="Bird.png" alt="vinyl"/>
+            </div>
+          </div>
+          <div class="card-info">
+            <div class="artist-name">Kelela</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end cards-column -->
+
+      <!-- RIGHT COLUMN — parallax image -->
+      <div class="parallax-column">
+        <div class="parallax-bg" id="parallaxBg"></div>
+        <div class="discover-text">
+          <div class="discover-title">DISCOVER:</div>
+        </div>
+        <div class="discover-tagline">
+          Music the<br>algorithm<br>missed.
+        </div>
+      </div>
+      <!-- end parallax-column -->
+
+    </section>
+    <!-- end hero -->
+
+  </div>
+  <!-- end page-wrapper -->
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-inner">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-vinyl" id="modalVinyl"></div>
+      <div class="modal-artist-name" id="modalName"></div>
+      <p class="modal-description" id="modalDesc"></p>
+      <div class="modal-tags" id="modalTags"></div>
+      <a href="#" class="modal-spotify" id="modalSpotify" target="_blank">Open on Spotify ↗</a>
+    </div>
+  </div>
+
+  <script>
+
+    // =====================
+    // PARALLAX
+    // =====================
+    const parallaxBg = document.getElementById('parallaxBg');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      parallaxBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+
+      const nav = document.getElementById('mainNav');
+      nav.style.color = scrollY > 100 ? '#ffffff' : '#000000';
+    });
+
+    // =====================
+    // ARTIST DATA
+    // =====================
+    const artists = {
+      beyonce: {
+        name: 'Beyoncé',
+        description: 'Not one sound. Not one feeling. Every era is a different world — pick which version of her you need right now.',
+        tags: ['euphoric', 'emotional', 'dance', 'raw', 'defiant'],
+        vinyl: 'beyonce',
+        spotify: 'https://open.spotify.com/artist/6vWDO969PvNqNYHIOW5v0m',
+        preview: ''
+      },
+      kelela: {
+        name: 'Kelela',
+        description: 'Immersive descent. A sound so spatial it feels extraterrestrial while carrying so much human emotion.',
+        tags: ['aquatic', 'liminal', 'spatial', 'corporeal', 'emotional sci-fi'],
+        vinyl: 'kelela',
+        spotify: 'https://open.spotify.com/artist/3AQRLZ9PuTAozP28Skbq8V',
+        preview: ''
+      }
+    };
+
+    // =====================
+    // MODAL
+    // =====================
+    let currentAudio = null;
+
+    function openModal(artistKey) {
+      const artist = artists[artistKey];
+      const modal = document.getElementById('modal');
+      const modalVinyl = document.getElementById('modalVinyl');
+
+      document.getElementById('modalName').textContent = artist.name;
+      document.getElementById('modalDesc').textContent = artist.description;
+      document.getElementById('modalSpotify').href = artist.spotify;
+
+      const tagsEl = document.getElementById('modalTags');
+      tagsEl.innerHTML = artist.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+
+      modalVinyl.className = `modal-vinyl`;
+      modalVinyl.innerHTML = `<img src="${artist.vinyl === 'beyonce' ? 'Image 2.png' : 'Bird.png'}" alt="vinyl"/>`;
+
+      modal.classList.add('visible');
+      modalVinyl.classList.add('spinning');
+
+      if (artist.preview) {
+        currentAudio = new Audio(artist.preview);
+        currentAudio.play();
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('visible');
+      document.getElementById('modalVinyl').classList.remove('spinning');
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+    }
+
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modal')) closeModal();
+    });
+
+  </script>
+
+</body>
+</html>

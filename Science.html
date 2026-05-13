@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Test</title>
+<style>
+body {
+background: #0a0806;
+display: flex;
+gap: 20px;
+padding: 40px;
+}
+
+.artist-img {
+width: 200px;
+height: 200px;
+object-fit: cover;
+}
+
+/* Test 1 — duotone amber */
+.duotone {
+filter: sepia(0.7) saturate(1) hue-rotate(340deg);
+}
+
+/* Test 2 — black and white */
+.blackwhite {
+filter: grayscale(100%);
+}
+
+/* Test 3 — silhouette */
+.silhouette {
+filter: brightness(0);
+}
+</style>
+</head>
+<body>
+<img class="artist-img duotone" src="IMG_6996.PNG"/>
+<img class="artist-img blackwhite" src="IMG_1480.JPG"/>
+<img class="artist-img silhouette" src="IMG_1493.JPG"/>
+</body>
+</html>

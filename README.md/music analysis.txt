@@ -1,0 +1,208 @@
+music analysis 
+- audio data 
+- critique, the melody ad the vocals of the artost aret really considered 
+texture ad toe of the vocalist 
+vocal delivery so shouting or whisperig 
+melodic tension so the chord progressiomovig 
+somewhere emptionally (a vocalists toe 
+carries such a. big impact i the way music is 
+interpreted i e frank ocean, inherit sadess with vocals )
+
+
+formations - mild minds 
+- valence score = 9A Camelot 
+- energy score 
+- mode (major/minor) = e minor 
+- tempo = 114 BPM
+
+i follow rivers (magnus remix)
+- valence score = 8A Camelot
+- energy score 
+- mode (major/minor) = a minor 
+- tempo = 122 BPM 
+
+i got u - duke dumont 
+- valence score = 8A camelot 
+- energy score 
+- mode (major/minor) = a minor 
+- tempo = 121 BPM 
+
+chill 
+
+white iverson - post malone
+- valence score = 9b camelot 
+- energy score = 56/100 
+- danceability = 68/100
+- happiness = 31/100
+- acousticness = 23/100
+- mode (major/minor) = g major
+- tempo = 130 BPM
+
+bitch dont kill my vibe - kendrick
+- valence score = 3B camelot
+- energy score = 70/100
+- danceability = 59/100 
+- happiness = 10/100
+- acousticness = 2/100
+- mode (major/minor) = C♯ major
+- tempo = 134 BPM
+
+Hold you up 
+(feat. Annahstasia & Steven Bamidele)
+- valence score = 3a camelot
+- energy score = 63/100
+- danceability = 47/100
+- happiness = 28/100
+- acousticness = 28/100
+- mode (major/minor) = a♯ major
+- tempo = 200 BPM
+
+Skin Tight (feat. Steve Lacy)
+- valence score = 2A camelot
+- energy score = 52/100
+- danceability = 47/100
+- happiness = 46/100
+- acousticness = 25/100
+- mode (major/minor) = D♯ minor
+- tempo = 174 BPM
+
+Justine's Interlude - A COLORS SHOW
+- valence score = 9B camelot
+- energy score = 45/100
+- danceability = 72/100
+- happiness = 86/100
+- acousticness =  19/100
+- mode (major/minor) = E minor
+- tempo = 84 BPM
+
+Pen Pals Dynasty
+- valence score = 9B camelot
+- energy score = 30/100
+- danceability = 89/100
+- happiness = 87/100
+- acousticness = 5/100
+- mode (major/minor) = G major
+- tempo = 80 BPM
+
+
+
+
+sad 
+wait for you - tems, future 
+- valence score = 3B camelot
+- energy score = 64/100
+- danceability = 46/100
+- happiness = 34/100
+- acousticness = 31/100
+- mode (major/minor) = C♯ major
+- tempo = 83 BPM
+
+Q , Alone
+- valence score = 6A camelot
+- energy score  = 80/100
+- danceability = 67/100
+- happiness = 73/100
+- acousticness = 1/100
+- mode (major/minor) = G minor
+- tempo = 80 BPM
+
+better, kelela 
+- valence score = 3A camelot
+- energy score = 18/100
+- danceability = 64/100
+- happiness = 33/100
+- acousticness = 82/100
+- mode (major/minor) = A♯ minor
+- tempo = 95 BPM
+
+amapiano.
+
+
+Abalele - Kabza De Small, 
+DJ Maphorisa, Ami Faku
+- valence score = 4A camelot
+- energy score = 45/100
+- danceability = 79/100
+- happiness = 59/100
+- acousticness = 18/100
+- mode (major/minor) = F minor
+- tempo = 113 BPM 
+(sadder)
+
+Bo Gogo (feat. Tracy & Thatohatsi)
+- valence score = 1A camelot
+- energy score = 71/100
+- danceability = 61/100
+- happiness = 53/100
+- acousticness = 1/100
+- mode (major/minor) = G♯ minor
+- tempo = 113 BPM
+
+Seasons (feat. Nello_Guitar)
+- valence score = 1A camelot
+- energy score = 21/100
+- danceability = 71/100
+- happiness = 6/100
+- acousticness = 93/100
+- mode (major/minor) = G minor
+- tempo = 112 BPM
+
+Lwangempela, Tee Jay
+- valence score = 3B camelot
+- energy score = 59/100
+- danceability = 81/100
+- happiness = 38/100
+- acousticness = 9/100
+- mode (major/minor) = C♯ major
+- tempo = 111 BPM
+
+outro lebza thevillain
+- valence score = 6A camelot
+- mode (major/minor) = G minor
+- tempo = 104 BPM
+
+Tender Love (feat. DJ Maphorisa & Kabza De Small)
+- valence score = 3A camelot
+- energy score = 39/100
+- danceability = 85/100
+- happiness = 45/100
+- acousticness = 1/100
+- mode (major/minor) = A♯ minor
+- tempo = 113 BPM
+
+Mina Nawe
+- valence score = 4A camelot
+- energy score = 87/100
+- danceability = 88/100
+- happiness = 78/100
+- acousticness = 2/100
+- mode (major/minor) = F minor
+- tempo = 112 BPM
+
+crazy vibez
+- valence score = 4A camelot
+- mode (major/minor) = F minor
+- tempo = 116 BPM
+
+Awukhuzeki
+- valence score = 3B camelot
+- energy score = 47/100
+- danceability = 79/100
+- happiness = 50/100
+- acousticness = 1/100
+- mode (major/minor) = C♯ major
+- tempo = 113 BPM
+
+DJ Stokie - Masithokoze
+- mode (major/minor) = E Minor
+- tempo = 113 BPM
+12A camelot
+
+Ndisize (feat. Ami Faku)
+- valence score = 7B camelot
+- energy score = 63/100
+- danceability = 78/100
+- happiness = 52/100
+- acousticness = 1/100
+- mode (major/minor) = F major
+- tempo = 117 BPM

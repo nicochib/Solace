@@ -1,0 +1,234 @@
+
+/* =====================
+BLACK 
+===================== */
+@font-face {
+    font-family: 'PPMori';
+    src: url('PPMori-Black.otf') format('opentype');
+    font-weight:900 ;
+    font-style: normal;
+  }
+  /* =====================
+  BLACK ITALIC
+  ===================== */
+  @font-face {
+    font-family: 'PPMori';
+    src: url('PPMori-BlackItalic.otf') format('opentype');
+    font-weight:900 ;
+    font-style: italic;
+  }
+  /* =====================
+  EXTRA LIGHT
+  ===================== */
+  @font-face {
+    font-family: 'PPMori';
+    src: url('PPMori-Extralight.otf') format('opentype');
+    font-weight:200 ;
+    font-style: normal;
+  }
+  /* =====================
+  EXTRA LIGHT - ITALIC
+  ===================== */
+  @font-face {
+    font-family: 'PPMori';
+    src: url('PPMori-ExtralightItalic.otf') format('opentype');
+    font-weight:200 ;
+    font-style: italic;
+  }
+  /* =====================
+  REGULAR 
+  ===================== */
+  @font-face {
+    font-family: 'PPMori';
+    src: url('PPMori-Regular.otf') format('opentype');
+    font-weight:400 ;
+    font-style: normal;
+  }
+  /* =====================
+  REGULAR - ITALIC
+  ===================== */
+  @font-face {
+    font-family: 'PPMori';
+    src: url('PPMori-Italic.otf') format('opentype');
+    font-weight:400 ;
+    font-style: italic;
+  }
+  /* =====================
+  SEMIBOLD 
+  ===================== */
+  @font-face {
+    font-family:'PPMori';
+    src: url('PPMori-Semibold.otf') format('opentype');
+    font-weight:600 ;
+    font-style: normal;
+  }
+  /* =====================
+  SEMIBOLD - ITALIC
+  ===================== */
+  @font-face {
+    font-family: 'PPMori';
+    src: url('SemiboldItalic.otf') format('opentype');
+    font-weight:600 ;
+    font-style: italic;
+  }
+  /* =====================
+CSS VARIABLES - index
+===================== */
+:root {
+    --white: #ffffff;
+    --cream: #f5f0e8;
+    --sunset-orange: #c8440a;
+    --sunset-amber: #e8650a;
+    --sunset-deep: #8b2500;
+    --text-transparent: rgba(255, 255, 255, 0.15);
+    --border: 30px;
+    }
+    
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    
+    html {
+    scroll-behavior: smooth;
+    }
+    
+    body {
+    position: relative;
+    background: #6b1e00;
+    font-family: 'Arial Black', Arial, sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+    }
+
+    /* =====================
+NAV
+===================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #0a0806;
+    z-index:100;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    transition: color 0.3s ease;
+    }
+    
+    nav a {
+    position: relative;
+    mix-blend-mode: difference;
+    color: #0a0806;
+    background: rgba(255,255,255,0.01);
+    text-decoration: none;
+    font-family: 'PPMori', sans-serif;
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    }
+    
+    nav a:hover {
+        opacity: 1;
+    }
+    
+    nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width:0 ;
+        height: 1px;
+        background: currentColor ;
+        transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+        width: 100% ;
+    }
+    
+/* =====================
+FOOTER
+===================== */
+footer {
+    margin-left: 0;
+    margin-right: 0;
+    width:100% ;    
+    padding: 48px 40px;
+    background: #0a0806;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    
+    .footer-tagline {
+    font-family: 'PPMori', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+    }
+    
+    .footer-nav {
+    display: flex;
+    gap: 32px;
+    }
+    
+    .footer-nav a {
+    font-family: 'PPMori', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    }
+    
+    .footer-nav a:hover {
+    color: rgba(255,255,255,0.7);
+    }
+    
+    .footer-legal {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-family: 'PPMori', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    }
+    
+    .footer-legal a {
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    }
+    
+    .footer-legal a:hover {
+    color: rgba(255,255,255,0.6);
+    }
+    
+    /* =====================
+    ANIMATIONS
+    ===================== */
+    @keyframes fadeUp {
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    
+    @keyframes fadeIn {
+    to { opacity: 1; }
+    }
+    
+    @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+    }

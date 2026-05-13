@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Solace</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+
+
+/* =====================
+CSS VARIABLES
+===================== */
+.hero-wrapper {
+background: #ffffff;
+padding-top: 50px ;
+padding-left: 20px ;
+padding-right:20px;
+padding-bottom: 20px;
+position: relative; 
+width: 100% ;
+box-sizing: border-box;
+}
+/* =====================
+OUTER FRAME / BLACK BORDER
+===================== */
+
+.black-frame{
+position: absolute;
+height:75.8vh ;
+top: 40px;
+left: 30px;
+right: 30px;
+bottom:0px ;
+border: 3px solid #0a0806 ;
+border-bottom: none;
+pointer-events: none;
+z-index: 100;
+border-radius: none;
+}
+
+/* =====================
+HERO SECTION
+===================== */
+.hero {
+isolation: isolate;   
+position: relative;
+transform: none;
+will-change: auto;
+z-index: 0;
+height: 75vh;
+width: 100%;
+margin: 0;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+border-radius: 4px;
+}
+
+/* Parallax sunset background */
+.hero-bg {
+position: absolute;
+inset: 0;
+background-image: url('tumblr_6c0d0eeaf40941f4b5516ba09a75a79c_8cec24cb_2048.jpg');
+background-size: cover;
+background-position: center 30%;
+z-index: 0;
+}
+
+/* Gradient overlay for depth */
+.hero-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(
+to bottom,
+rgba(0,0,0,0.05) 0%,
+rgba(139, 37, 0, 0.5) 40%,
+rgba(0,0,0,0.2) 100%
+);
+z-index: 1;
+}
+
+/* =====================
+SOLACE TYPOGRAPHY — 3 LAYERS
+===================== */
+.solace-wrap {
+position: absolute;
+top: -70px;
+left: 0px;
+z-index: 10000;
+transform: translateZ(0);
+}
+
+
+/* Layer 2 — transparent/sky bleed */
+.solace-transparent {
+position: absolute;
+top: 0.3em;
+left:-0.11em;
+font-size: clamp(100px,15vw,100px);
+font-weight: 900;
+font-style: italic;
+letter-spacing: -0.1em;
+color: rgba(255,255,255,0.12);
+white-space: nowrap;
+will-change: transform;
+}
+
+/* Layer 3 — solid white, main */
+.solace-solid {
+position: relative;
+font-size: clamp(100px,15vw,100px);
+font-weight: 900;
+font-style: italic;
+letter-spacing: -0.1em;
+color: var(--white);
+white-space: nowrap;
+text-shadow: 0 2px 40px rgba(0,0,0,0.2);
+}
+
+/* =====================
+TAGLINE
+===================== */
+.tagline {
+position: absolute;
+top: 52%;
+left: 40px;
+z-index: 10;
+font-family: 'Arial', sans-serif;
+font-size: clamp(11px, 1.2vw, 14px);
+font-weight: 400;
+font-style: italic;
+color: rgba(255,255,255,0.75);
+letter-spacing: 0.05em;
+text-transform: lowercase;
+opacity: 0;
+transform: translateY(12px);
+animation: fadeUp 1s ease 0.8s forwards;
+}
+
+/* =====================
+MOOD INPUT SECTION
+===================== */
+.mood-section {
+position: absolute;
+bottom: 60px;
+left: 40px;
+right: 40px;
+z-index: 10;
+opacity: 0;
+transform: translateY(16px);
+animation: fadeUp 1s ease 1.2s forwards;
+}
+
+.mood-input-wrap {
+position: relative;
+width: 100%;
+max-width: 680px;
+}
+
+.mood-input {
+width: 100%;
+background: rgba(255,255,255,0.08);
+border: none;
+border-bottom: 1px solid rgba(255,255,255,0.4);
+padding: 16px 48px 16px 0;
+font-family: 'Arial', sans-serif;
+font-size: clamp(14px, 1.4vw, 16px);
+font-style: italic;
+color: var(--white);
+outline: none;
+letter-spacing: 0.02em;
+transition: border-color 0.3s ease;
+}
+
+.mood-input::placeholder {
+color: rgba(255,255,255,0.45);
+}
+
+.mood-input:focus {
+border-bottom-color: rgba(255,255,255,0.8);
+}
+
+.mood-submit {
+position: absolute;
+right: 0;
+top: 50%;
+transform: translateY(-50%);
+background: none;
+border: none;
+cursor: pointer;
+padding: 8px;
+color: rgba(255,255,255,0.6);
+transition: color 0.3s ease;
+}
+
+.mood-submit:hover {
+color: var(--white);
+}
+
+.mood-submit svg {
+width: 18px;
+height: 18px;
+stroke: currentColor;
+fill: none;
+stroke-width: 1.5;
+}
+
+/* Preset buttons */
+.presets {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-top: 16px;
+max-width: 680px;
+}
+
+.preset-btn {
+background: rgba(255,255,255,0.08);
+border: 1px solid rgba(255,255,255,0.2);
+color: rgba(255,255,255,0.7);
+padding: 6px 16px;
+border-radius: 100px;
+font-family: 'PPMori', sans-serif;
+font-size: 11px;
+letter-spacing: 0.08em;
+cursor: pointer;
+transition: all 0.2s ease;
+text-transform: lowercase;
+}
+
+.preset-btn:hover {
+background: rgba(255,255,255,0.15);
+border-color: rgba(255,255,255,0.5);
+color: var(--white);
+}
+
+/* Scroll hint */
+.scroll-hint {
+position: absolute;
+bottom: 24px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 10;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 6px;
+opacity: 0;
+animation: fadeIn 1s ease 2s forwards;
+}
+
+.scroll-hint span {
+font-family: 'PPMori', sans-serif;
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.4);
+}
+
+.scroll-line {
+width: 1px;
+height: 32px;
+background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+animation: scrollPulse 2s ease infinite;
+}
+
+/* =====================
+PARAGRAPH SECTION
+===================== */
+.para-section {
+width:100% ;
+position: relative;
+min-height: 100vh;
+display: flex;
+align-items: center;
+padding: 80px 40px;
+background: linear-gradient(
+to bottom,
+#6b1e00 0%,
+#3d1000 50%,
+#1a0800 100%
+);
+}
+
+.para-text {    
+max-width: 800px;
+font-family: 'PPMori',sans-serif;
+font-size: clamp(22px, 3.5vw, 133px);
+font-weight: 600 ;
+font-style: normal;
+line-height: 1.4;
+letter-spacing: 0em;
+color: rgba(255,255,255,0.9);
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.para-text.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+.para-text em {
+color: rgba(255, 160, 80, 0.85);
+font-style: normal;
+}
+
+/* =====================
+RESULTS SECTION
+===================== */
+.results-section {
+margin-left: 0;
+margin-right: 0;
+width:100% ;    
+padding: 60px 40px;
+background: #0f0604;
+min-height: 50vh;
+}
+
+.results-label {
+font-family: 'PPMori', sans-serif;
+font-size: 10px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.3);
+margin-bottom: 32px;
+}
+
+#results {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 16px;
+}
+
+#results p {
+background: rgba(255,255,255,0.04);
+border: 1px solid rgba(255,255,255,0.08);
+padding: 20px 24px;
+border-radius: 4px;
+color: rgba(255,255,255,0.85);
+font-family: 'Arial', sans-serif;
+font-size: 13px;
+line-height: 1.5;
+transition: background 0.2s ease;
+}
+
+#results p:hover {
+background: rgba(255,255,255,0.07);
+}
+
+#results strong {
+display: block;
+font-size: 15px;
+margin-bottom: 4px;
+color: var(--white);
+}
+
+
+
+</style>
+</head>
+<body>
+<!-- Nav -->
+
+<nav>
+    <a href="#">Discover</a>
+    <a href="#">The Science</a>
+    <a href="#">Memory Archive</a>
+    
+</nav>
+
+
+
+<div class= "hero-wrapper">
+    <div class="black-frame">
+
+</div>
+
+
+    <!-- Hero -->
+    <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    
+
+<!-- SOLACE 3 layer typography -->
+<div class="solace-wrap">
+<div class="solace-transparent" id="solaceTransparent">SOLACE</div>
+<div class="solace-outline" id="solaceOutline">SOLACE</div>
+<div class="solace-solid">SOLACE</div>
+</div>
+
+<!-- Tagline -->
+<div class="tagline">
+for the feelings you can't name...
+</div>
+
+<!-- Mood input -->
+<div class="mood-section">
+<div class="mood-input-wrap">
+<input
+class="mood-input"
+id="moodInput"
+type="text"
+placeholder="describe a feeling, a memory, a moment..."
+autocomplete="off"
+/>
+<button class="mood-submit" onclick="search()">
+<svg viewBox="0 0 24 24">
+<circle cx="11" cy="11" r="8"/>
+<line x1="21" y1="21" x2="16.65" y2="16.65"/>
+</svg>
+</button>
+</div>
+
+<!-- Preset buttons -->
+<div class="presets">
+<button class="preset-btn" onclick="setMood('2am')">2am</button>
+<button class="preset-btn" onclick="setMood('heartbreak')">heartbreak</button>
+<button class="preset-btn" onclick="setMood('summer')">summer</button>
+<button class="preset-btn" onclick="setMood('chill amapiano')">chill amapiano</button>
+<button class="preset-btn" onclick="setMood('nostalgic')">nostalgic</button>
+<button class="preset-btn" onclick="setMood('euphoric')">euphoric</button>
+<button class="preset-btn" onclick="setMood('late night')">late night</button>
+<button class="preset-btn" onclick="setMood('neo soul')">neo soul</button>
+</div>
+</div>
+
+<!-- Scroll hint -->
+<div class="scroll-hint">
+<div class="scroll-line"></div>
+<span>scroll</span>
+</div>
+
+</section>
+    </div>
+
+<!-- Full paragraph section -->
+
+    <section class="para-section">
+       <p class="para-text" id="paraText">
+“For the feelings you can't name , The  <em>reminiscences</em>  You're trying to escape to, 
+The summer you want back and the moments you're still living in. 
+<em> A soundtrack for your memories.</em>"
+</p>
+</section>
+
+<!-- Results -->
+
+<section class="results-section">
+<div class="results-label">your soundtrack</div>
+<div id="results"></div>
+</section>
+
+<!-- Footer -->
+
+<footer>
+<span class="footer-tagline">a soundtrack for your memories — solace</span>
+<div class="footer-nav">
+<a href="#">Discover</a>
+<a href="#">The Science</a>
+<a href="#">Memory Archive</a>
+</div>
+
+<div class="footer-legal">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms & Conditions</a>
+    <span>© 2025 Solace</span>
+</div>
+</footer>
+
+<script>
+// =====================
+// PARALLAX SCROLL
+// =====================
+const heroBg = document.getElementById('heroBg');
+const solaceTransparent = document.getElementById('solaceTransparent');
+const solaceOutline = document.getElementById('solaceOutline');
+const paraText = document.getElementById('paraText');
+
+window.addEventListener('scroll', () => {
+const scrollY = window.scrollY;
+const nav = document.querySelector('nav');
+const hero = document.querySelector('.hero');
+const heroBottom = hero.getBoundingClientRect().bottom;
+
+// Background moves slower than scroll — classic parallax
+heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+
+// Transparent SOLACE layer drifts slightly differently
+solaceTransparent.style.transform = `translateY(${scrollY * 0.08}px)`;
+
+// Outline layer drifts at different speed
+solaceOutline.style.transform = `translateY(${scrollY * 0.04}px)`;
+
+// Paragraph reveal on scroll
+const paraTop = paraText.getBoundingClientRect().top;
+if (paraTop < window.innerHeight * 0.85) {
+paraText.classList.add('visible');
+}
+// =====================
+// NAV INVERSION
+// =====================
+
+if (heroBottom <= 60) {
+    nav.style.color = '#ffffff';
+}else {
+    nav.style.color = '#000000'; 
+}
+
+});
+
+// =====================
+// PRESET MOOD BUTTONS
+// =====================
+function setMood(mood) {
+document.getElementById('moodInput').value = mood;
+search();
+}
+</script>
+
+<!-- Your app.js logic -->
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
