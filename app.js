@@ -1,7 +1,7 @@
-const LASTFM_API_KEY = "927254e1cb27b3d6777a6ed810eea067";
-const LASTFM_BASE_URL = "https://ws.audioscrobbler.com/2.0/";
-const SPOTIFY_CLIENT_ID = "e53b5a6cc52b4d33b99d4bca6abbc27a";
-const SPOTIFY_CLIENT_SECRET = "166df699eecb4b2baf17122d84a764ae";
+const LASTFM_API_KEY = "";
+const LASTFM_BASE_URL = "";
+const SPOTIFY_CLIENT_ID = "";
+const SPOTIFY_CLIENT_SECRET = "";
 
 // =====================
 // GENRE TAGS
