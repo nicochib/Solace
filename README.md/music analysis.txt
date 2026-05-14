@@ -1,3 +1,130 @@
+# Solace
+### *a soundtrack for your memories.*
+
+---
+
+## Why I built this
+
+My love for music goes beyond the surface. I wanted to create something 
+that dives into the feeling of what music does for me and hopefully for 
+other people who discover this.
+
+One thing I've always found so profound is the musicality and feeling 
+that instrumentals and sound provoke — whether positive or negative. 
+Music has become such an integral part of my life and something I turn 
+to in times of distress, which is where the name Solace came about.
+
+My love for music and culture played a big part in the making of this 
+project and a big reason into why keywords weren't the only way to 
+discover music for other people. Music is subjective — so including 
+the Spotify API and making a sonic profile identifier was integral for 
+the accuracy I wanted this project to depict.
+
+Some platforms also like grouping genres and artists into a specific box. 
+I wanted this web app to do those artists justice while also considering 
+that music goes beyond labels. It's science and very much an outlet for 
+a lot of this generation.
+
+---
+
+## The Problem
+
+Mainstream music platforms consistently flatten genres and artists — 
+particularly those rooted in Black music culture. Amapiano gets called 
+"African music." Kelela gets filed under R&B. Afrobeats artists with 
+completely different sonic worlds get grouped together. Keywords and 
+genre tags reflect the biases of whoever built the algorithm — and those 
+biases have always underserved certain artists and sounds.
+
+Solace was built to address that. Not with better tags — but by removing 
+the reliance on tags entirely.
+
+---
+
+## How it works
+
+Solace approaches music recommendation differently. Rather than relying 
+on user-generated tags or popularity metrics, it analyses the actual 
+sonic DNA of a track — valence, energy, danceability, tempo and key — 
+to match music to feelings, not algorithms.
+
+This matters especially for genres that are often flattened or 
+misrepresented by mainstream platforms. Amapiano, afrobeats, afroswing 
+and other culturally specific sounds have their own distinct sonic 
+fingerprints that keyword tagging consistently fails to capture.
+
+The Discover page exists specifically to surface artists and sounds that 
+live outside the algorithm's radar — not because they aren't significant, 
+but because significance has historically been measured by a very narrow 
+set of cultural criteria.
+
+Music goes beyond labels. So does Solace.
+
+---
+
+## Sonic Profile Research
+
+Before building the mood filters I analysed real songs across multiple 
+genres — pulling audio feature scores to identify sonic patterns.
+
+Key findings:
+- **Amapiano** has a consistent tempo fingerprint: 110–117 BPM across virtually all tracks
+- **Happy** is not determined by major key — euphoric songs often sit in minor keys with high BPM  
+- **Chill and sad** exist on a spectrum not in separate boxes — danceability separates them better than tempo
+- **Cultural genres** require their own sonic logic — happiness in amapiano is rhythmic not melodic
+- **Mode (major/minor)** is less reliable than tempo + energy + danceability combined
+
+---
+
+## Core Features
+
+- **Mood & Memory Input** — describe a feeling, memory or moment in free text
+- **Sonic Profiling** — Spotify API matches songs by audio features not tags
+- **Artist Discovery** — editorial descriptions, sonic mood tags, 30 second previews
+- **Sonic Chart** — visual representation of an artist or album's audio fingerprint
+- **Save a Moment** — name your playlist and store it in your personal memory archive
+- **Dynamic Theming** — UI responds to genre and vibe of results
+
+---
+
+## Tech Stack
+
+- HTML, CSS, Vanilla JavaScript
+- Spotify Web API — audio features, track data, artist info
+- Last.fm API — genre tags and artist data  
+- Browser local storage — saving memories, no backend needed
+- CSS variables — consistent design system across pages
+
+---
+
+## Pages
+
+| Page | Description |
+|------|-------------|
+| Home | Mood input, preset buttons, playlist generation |
+| Discover | Artist cards, sonic charts, editorial descriptions |
+| The Science | The philosophy and the data behind Solace |
+| Memory Archive | Saved playlists and named emotional moments |
+
+---
+
+## Setup
+
+Add your API keys to `app.js`:
+- Spotify Client ID and Secret — developer.spotify.com
+- Last.fm API Key — last.fm/api
+
+Images are stored locally — add your own to the project folder.
+
+---
+
+## Design
+
+Designed in Curve before being coded. Editorial, warm, sunset-driven. 
+Inspired by the feeling of golden hour — melancholic, immersive, human.
+
+*"Music the algorithm missed."*
+
 music analysis 
 - audio data 
 - critique, the melody ad the vocals of the artost aret really considered 
