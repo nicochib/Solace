@@ -76,6 +76,16 @@ Key findings:
 
 ---
 
+#critique and web app evolution 
+Amapiano presented a particular challenge — and a particular opportunity. A sad amapiano track still 
+carries the log drum, still moves the body, still has the danceability markers that algorithms associate with happiness. 
+But underneath is an emotional weight that purely metric-based systems miss entirely. This euphoric sadness 
+— grief and movement existing simultaneously — is almost a defining characteristic of the genre and reflects 
+broader African musical traditions where celebration and sorrow are not opposites.
+To address this, Solace builds genre-specific sonic profiles rather than applying universal emotional metrics. Amapiano has its own tier system — chill, mid and party — determined by energy and danceability rather than valence alone.
+As Solace evolves, this approach will be extended across as many genres as possible — building culturally informed sonic profiles that reflect how music actually feels within its own cultural context, not how a western-trained algorithm assumes it should.
+
+
 ## Core Features
 
 - **Mood & Memory Input** — describe a feeling, memory or moment in free text
